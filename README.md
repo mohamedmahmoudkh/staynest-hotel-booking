@@ -4,6 +4,8 @@ StayNest is a full-stack hotel booking website that allows users to search for h
 
 The project also includes an Admin Dashboard for managing hotels, rooms, and bookings.
 
+---
+
 ## Project Overview
 
 The website has two main types of users:
@@ -13,7 +15,7 @@ The website has two main types of users:
 Users can:
 
 * Create an account
-* Login securely
+* Login and logout
 * Search for hotels
 * View hotel details
 * View available rooms
@@ -21,6 +23,7 @@ Users can:
 * Make a booking
 * View their bookings
 * Cancel a booking
+* View their profile information
 
 ### Admin
 
@@ -35,6 +38,8 @@ Admins can:
 * Delete rooms
 * View all bookings
 * Manage bookings
+
+---
 
 ## User Flow
 
@@ -58,6 +63,8 @@ Booking Confirmation
 My Bookings
 ```
 
+---
+
 ## Admin Flow
 
 ```text
@@ -72,6 +79,8 @@ Manage Rooms
 Manage Bookings
 ```
 
+---
+
 ## Tech Stack
 
 ### Frontend
@@ -82,8 +91,7 @@ Manage Bookings
 
 ### Backend
 
-* Node.js
-* Express.js
+* PHP
 
 ### Database
 
@@ -93,17 +101,19 @@ Manage Bookings
 
 ### Authentication
 
-* JWT
-* bcrypt
+* PHP Sessions
+* Password Hashing
 
-### Development Tools
+### Development & Testing
 
 * Git
 * GitHub
 * VS Code
 * Postman
 
-## Project Structure
+---
+
+# Project Structure
 
 ```text
 staynest-hotel-booking/
@@ -141,34 +151,39 @@ staynest-hotel-booking/
 │
 ├── backend/
 │   │
-│   ├── server.js
-│   ├── package.json
-│   ├── .env
-│   │
 │   ├── config/
-│   │   └── db.js
+│   │   └── database.php
 │   │
-│   ├── models/
-│   │   ├── userModel.js
-│   │   ├── hotelModel.js
-│   │   ├── roomModel.js
-│   │   └── bookingModel.js
+│   ├── auth/
+│   │   ├── register.php
+│   │   ├── login.php
+│   │   └── logout.php
 │   │
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── hotelController.js
-│   │   ├── roomController.js
-│   │   └── bookingController.js
+│   ├── users/
+│   │   ├── profile.php
+│   │   └── get-user.php
 │   │
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── hotelRoutes.js
-│   │   ├── roomRoutes.js
-│   │   └── bookingRoutes.js
+│   ├── hotels/
+│   │   ├── get-hotels.php
+│   │   ├── get-hotel.php
+│   │   ├── add-hotel.php
+│   │   ├── update-hotel.php
+│   │   └── delete-hotel.php
+│   │
+│   ├── rooms/
+│   │   ├── get-rooms.php
+│   │   ├── add-room.php
+│   │   ├── update-room.php
+│   │   └── delete-room.php
+│   │
+│   ├── bookings/
+│   │   ├── create-booking.php
+│   │   ├── my-bookings.php
+│   │   ├── cancel-booking.php
+│   │   └── all-bookings.php
 │   │
 │   └── middleware/
-│       ├── authMiddleware.js
-│       └── adminMiddleware.js
+│       └── auth.php
 │
 ├── database/
 │   └── staynest.sql
@@ -177,7 +192,9 @@ staynest-hotel-booking/
 └── README.md
 ```
 
-## Database Structure
+---
+
+# Database Structure
 
 The main database tables are:
 
@@ -188,7 +205,7 @@ rooms
 bookings
 ```
 
-### Users
+## Users Table
 
 ```text
 users
@@ -202,7 +219,14 @@ role
 created_at
 ```
 
-### Hotels
+The `role` field can contain:
+
+```text
+user
+admin
+```
+
+## Hotels Table
 
 ```text
 hotels
@@ -216,7 +240,7 @@ rating
 created_at
 ```
 
-### Rooms
+## Rooms Table
 
 ```text
 rooms
@@ -231,7 +255,7 @@ image
 available
 ```
 
-### Bookings
+## Bookings Table
 
 ```text
 bookings
@@ -247,7 +271,9 @@ status
 created_at
 ```
 
-### Relationships
+---
+
+# Database Relationships
 
 ```text
 User
@@ -271,9 +297,17 @@ Room
 Hotel
 ```
 
-## Team Tasks
+A user can have multiple bookings.
 
-### Task 1 - Frontend Home & Search
+A room can have multiple bookings over different dates.
+
+A hotel can have multiple rooms.
+
+---
+
+# Team Tasks
+
+## Task 1 – Frontend Home & Search
 
 Responsible for the main user interface and hotel search.
 
@@ -286,7 +320,9 @@ Responsible for the main user interface and hotel search.
 * Filters
 * Responsive Design
 
-### Task 2 - Frontend Hotel Details & Booking
+---
+
+## Task 2 – Frontend Hotel Details & Booking
 
 Responsible for the hotel details and booking interface.
 
@@ -299,93 +335,159 @@ Responsible for the hotel details and booking interface.
 * Booking Confirmation
 * My Bookings UI
 
-### Task 3 - Backend Authentication & Users
+---
 
-Responsible for authentication and user management.
+## Task 3 – Backend Authentication & Users (PHP)
 
-* Node.js + Express setup
-* MySQL connection
-* Users table
+Responsible for authentication and user management using PHP.
+
+* PHP Backend Setup
+* XAMPP & MySQL Connection
+* Users Table
 * Register API
 * Login API
-* JWT Authentication
 * Password Hashing
-* Authentication Middleware
+* Session / Authentication Handling
 * User Profile API
+* Get User Information
+* Basic API Testing using Postman
 
-### Task 4 - Backend Hotels & Rooms
+---
+
+## Task 4 – Backend Hotels & Rooms (PHP)
 
 Responsible for hotels and rooms management.
 
-* Hotels table
-* Rooms table
-* Hotel APIs
+* Hotels Table
+* Rooms Table
+* MySQL Queries
+* Get All Hotels
+* Get Hotel Details
 * Add Hotel
 * Edit Hotel
 * Delete Hotel
+* Get Available Rooms
 * Add Room
 * Edit Room
 * Delete Room
-* Get Hotels
-* Get Hotel Details
-* Get Available Rooms
+* Basic API Testing using Postman
 
-### Task 5 - Booking System & Admin Dashboard
+---
+
+## Task 5 – Booking System & Admin Dashboard (PHP)
 
 Responsible for the booking system and admin functionality.
 
-* Bookings table
+* Bookings Table
 * Create Booking
 * Check Room Availability
-* My Bookings API
+* My Bookings
 * Cancel Booking
 * Admin Dashboard
 * Manage Hotels
 * Manage Rooms
 * View Bookings
 * Manage Bookings
+* Basic API Testing using Postman
 
-## API Structure
+---
 
-The backend APIs will follow this structure:
+# API Structure
+
+The backend APIs will be organized into separate PHP endpoints.
+
+## Authentication
 
 ```text
-/api/auth
-    POST /register
-    POST /login
-
-/api/users
-    GET /profile
-
-/api/hotels
-    GET /
-    GET /:id
-    POST /
-    PUT /:id
-    DELETE /:id
-
-/api/rooms
-    GET /hotel/:hotelId
-    POST /
-    PUT /:id
-    DELETE /:id
-
-/api/bookings
-    POST /
-    GET /my-bookings
-    DELETE /:id
-
-/api/admin
-    GET /bookings
+POST /auth/register.php
+POST /auth/login.php
+POST /auth/logout.php
 ```
 
-The exact API structure can be adjusted during development if the team agrees on a better approach.
+## Users
 
-## How We Will Work
+```text
+GET /users/profile.php
+GET /users/get-user.php
+```
 
-We will divide the project into separate tasks, but all tasks must follow the same database structure and API structure.
+## Hotels
 
-The development process will be:
+```text
+GET    /hotels/get-hotels.php
+GET    /hotels/get-hotel.php
+POST   /hotels/add-hotel.php
+POST   /hotels/update-hotel.php
+POST   /hotels/delete-hotel.php
+```
+
+## Rooms
+
+```text
+GET    /rooms/get-rooms.php
+POST   /rooms/add-room.php
+POST   /rooms/update-room.php
+POST   /rooms/delete-room.php
+```
+
+## Bookings
+
+```text
+POST   /bookings/create-booking.php
+GET    /bookings/my-bookings.php
+POST   /bookings/cancel-booking.php
+GET    /bookings/all-bookings.php
+```
+
+The exact endpoints can be adjusted if the team agrees on a better structure.
+
+---
+
+# Authentication Flow
+
+Authentication will be handled using PHP Sessions.
+
+```text
+User
+ ↓
+Register
+ ↓
+Password Hashing
+ ↓
+Database
+ ↓
+Login
+ ↓
+Verify Email & Password
+ ↓
+Create PHP Session
+ ↓
+Authenticated User
+```
+
+Protected APIs will check whether the user has an active session before allowing access.
+
+Example:
+
+```text
+Request
+   ↓
+Session Check
+   ↓
+Authenticated?
+  / \
+Yes  No
+ ↓    ↓
+Allow  Return Error
+```
+
+---
+
+# How The Team Will Work
+
+The project will be developed in separate tasks, but all team members must follow the same database structure, API structure, and naming conventions.
+
+The development process:
 
 ```text
 1. Project Setup
@@ -400,40 +502,44 @@ The development process will be:
        ↓
 6. Authentication
        ↓
-7. Booking System
+7. Hotel & Room System
        ↓
-8. Admin Dashboard
+8. Booking System
        ↓
-9. Testing
+9. Admin Dashboard
        ↓
-10. Final Integration
+10. Testing
+       ↓
+11. Final Integration
 ```
 
-The frontend and backend can be developed at the same time.
+Frontend and backend development can happen at the same time.
 
 For example:
 
 ```text
-Frontend Developer
-       ↓
-Creates Hotel Details UI
-       ↓
-Uses expected API
-       ↓
-GET /api/hotels/:id
-
-Backend Developer
-       ↓
-Creates Hotel API
-       ↓
-Returns hotel data
-       ↓
-Frontend consumes the API
+Frontend
+   ↓
+Hotel Details Page
+   ↓
+Requests Hotel Data
+   ↓
+GET /hotels/get-hotel.php
+   ↓
+Backend
+   ↓
+MySQL
+   ↓
+Returns Hotel Data
+   ↓
+Frontend Displays Data
 ```
 
-## Git & GitHub Workflow
+---
 
-Everyone should work on their own branch.
+# Git & GitHub Workflow
+
+Each team member should work on their own branch.
 
 Do not directly push development work to `main`.
 
@@ -453,9 +559,7 @@ main
  └── feature/booking-admin
 ```
 
-### Workflow
-
-Before starting work:
+## Before Starting Work
 
 ```bash
 git checkout main
@@ -478,141 +582,198 @@ git push origin feature/your-task
 
 Then create a Pull Request on GitHub.
 
-The team will review the changes before merging them into `main`.
+The changes should be reviewed before merging into `main`.
 
-## Important Team Rules
+---
+
+# Important Team Rules
 
 1. Do not work directly on `main`.
 2. Pull the latest changes before starting new work.
-3. Do not change another member's task without discussing it first.
+3. Do not modify another member's task without discussing it first.
 4. Follow the agreed database structure.
-5. Follow the agreed API naming.
-6. Keep variable and file names clear and consistent.
+5. Follow the agreed API structure.
+6. Keep file and variable names clear and consistent.
 7. Test your code before creating a Pull Request.
-8. Do not commit `.env` files or passwords.
-9. If you change an API, inform the team.
+8. Do not upload passwords or sensitive configuration to GitHub.
+9. Inform the team before changing an API.
 10. Communicate before making major structural changes.
+11. Keep commits clear and related to one feature.
+12. Resolve merge conflicts with the team member responsible for the affected code.
 
-## Environment Setup
+---
 
-### 1. Clone the Repository
+# Local Environment Setup
 
-```bash
-git clone <repository-url>
-cd staynest-hotel-booking
-```
+## 1. Install XAMPP
 
-### 2. Start XAMPP
-
-Open XAMPP and start:
+Install XAMPP and start:
 
 ```text
 Apache
 MySQL
 ```
 
-Then open phpMyAdmin and create the database:
+## 2. Project Location
+
+Place the project inside the XAMPP `htdocs` folder:
+
+```text
+xampp/
+└── htdocs/
+    └── staynest-hotel-booking/
+```
+
+## 3. Create Database
+
+Open phpMyAdmin and create:
 
 ```text
 staynest
 ```
 
-Import:
+Import the SQL file:
 
 ```text
 database/staynest.sql
 ```
 
-### 3. Install Backend Dependencies
+## 4. Database Connection
 
-```bash
-cd backend
-npm install
-```
-
-### 4. Configure Environment Variables
-
-Create a `.env` file inside the backend folder:
-
-```env
-PORT=5000
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=staynest
-JWT_SECRET=your_secret_key
-```
-
-Do not upload `.env` to GitHub.
-
-### 5. Run the Backend
-
-```bash
-npm start
-```
-
-The backend should run on:
+Configure the database connection inside:
 
 ```text
-http://localhost:5000
+backend/config/database.php
 ```
 
-## Testing
+Example configuration:
 
-Before submitting a Pull Request, test:
+```php
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "staynest";
+```
+
+Do not upload real database passwords or sensitive credentials to GitHub.
+
+## 5. Run The Project
+
+Start Apache and MySQL from XAMPP.
+
+Then open the project through:
+
+```text
+http://localhost/staynest-hotel-booking/
+```
+
+---
+
+# Testing
+
+Postman will be used to test the PHP APIs before connecting them to the frontend.
+
+Test the following:
+
+### Authentication
 
 * Register
 * Login
-* JWT authentication
-* Hotel search
-* Hotel details
-* Room availability
-* Create booking
-* View bookings
-* Cancel booking
-* Admin login
-* Hotel CRUD
-* Room CRUD
-* Booking management
+* Logout
+* Session Authentication
+* Get User Information
 
-Use Postman to test backend APIs before connecting them to the frontend.
+### Hotels
 
-## Final Goal
+* Get Hotels
+* Get Hotel Details
+* Add Hotel
+* Update Hotel
+* Delete Hotel
 
-The final system should provide a complete hotel booking experience:
+### Rooms
+
+* Get Rooms
+* Add Room
+* Update Room
+* Delete Room
+* Check Availability
+
+### Bookings
+
+* Create Booking
+* Get My Bookings
+* Cancel Booking
+* Get All Bookings
+
+### Admin
+
+* Admin Authentication
+* Manage Hotels
+* Manage Rooms
+* Manage Bookings
+
+---
+
+# Final System
+
+The final system should provide a complete hotel booking experience.
+
+## User
 
 ```text
-User
- ↓
-Register / Login
- ↓
+Register
+   ↓
+Login
+   ↓
 Search Hotels
- ↓
+   ↓
 View Hotel
- ↓
+   ↓
 View Rooms
- ↓
+   ↓
 Select Room
- ↓
+   ↓
 Book Room
- ↓
+   ↓
 View Booking
- ↓
+   ↓
 Cancel Booking
 ```
 
-And for Admin:
+## Admin
 
 ```text
 Admin Login
- ↓
+   ↓
 Dashboard
- ↓
+   ↓
 Manage Hotels
- ↓
+   ↓
 Manage Rooms
- ↓
+   ↓
 Manage Bookings
 ```
 
-The main goal is to build a clean, functional, and easy-to-understand Full-Stack project where all five team members contribute and the final parts work together as one complete system.
+---
+
+# Future Improvements
+
+These features are not required for the initial version but can be added later:
+
+* Online Payment
+* Hotel Reviews & Ratings
+* Advanced Search Filters
+* Email Booking Confirmation
+* Hotel Location Map
+* Wishlist
+* Discount & Coupon System
+* Advanced Admin Statistics
+
+---
+
+# Project Goal
+
+The goal of StayNest is to build a clean, functional, beginner-friendly Full-Stack Hotel Booking System.
+
+Each team member will be responsible for a specific part of the project, and all parts will be integrated together to create one complete working website.
