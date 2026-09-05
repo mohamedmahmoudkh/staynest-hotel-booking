@@ -1,0 +1,1 @@
+const API = '../backend/'; document.addEventListener('DOMContentLoaded',()=>{const form=document.getElementById('searchForm'); if(form) form.addEventListener('submit',e=>{e.preventDefault(); const location=document.getElementById('location').value; window.location.href=`hotels.html?location=${encodeURIComponent(location)}`;});});

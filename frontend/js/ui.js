@@ -1,0 +1,1 @@
+function renderMessage(element, message){if(element) element.textContent=message;}

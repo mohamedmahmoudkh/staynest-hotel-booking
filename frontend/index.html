@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayNest - Hotel Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header id="navbar"></header>
+    <main>
+        <section class="hero">
+            <h1>Find your perfect stay</h1>
+            <p>Search hotels, explore rooms, and book your next stay.</p>
+            <form id="searchForm">
+                <input type="text" id="location" placeholder="City or location">
+                <input type="date" id="checkIn">
+                <input type="date" id="checkOut">
+                <input type="number" id="guests" min="1" value="1" placeholder="Guests">
+                <button type="submit">Search</button>
+            </form>
+        </section>
+        <section id="popularHotels">
+            <h2>Popular Hotels</h2>
+            <div id="hotelList" class="grid"></div>
+        </section>
+    </main>
+    <footer id="footer"></footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

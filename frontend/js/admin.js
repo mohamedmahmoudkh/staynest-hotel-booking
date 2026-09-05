@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const ids=['dashboard','hotelAdmin','roomAdmin','bookingAdmin']; ids.forEach(id=>{const el=document.getElementById(id); if(el) el.innerHTML='<p>Admin management interface ready for implementation.</p>';});});
