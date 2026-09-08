@@ -1,0 +1,182 @@
+{
+  "info": {
+    "_postman_id": "314c883c-5a39-4b09-9b9b-49de9b24e37f",
+    "name": "staynest",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54934352"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "name",
+              "value": "ahmed",
+              "type": "text",
+              "uuid": "2010ed36-dedf-4ac6-b61e-0f439526f737"
+            },
+            {
+              "key": "email",
+              "value": "ahmed@gmail.com",
+              "type": "text",
+              "uuid": "74a4112c-e00f-47f8-aca0-d77197b3c714"
+            },
+            {
+              "key": "password",
+              "value": "123456",
+              "type": "text",
+              "uuid": "9aac2b9b-c590-4e20-9e3f-67ddaa1c1140"
+            },
+            {
+              "key": "phone",
+              "value": "01012345678",
+              "type": "text",
+              "uuid": "80e31810-6ef5-414c-aeea-b80388653144"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost/staynest-hotel-booking/backend/auth/register.php",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "staynest-hotel-booking",
+            "backend",
+            "auth",
+            "register.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "ahmed@gmail.com",
+              "type": "text",
+              "uuid": "4ba0e00c-79a9-45a5-bbdd-6c56b0ffcc8b"
+            },
+            {
+              "key": "password",
+              "value": "123456",
+              "type": "text",
+              "uuid": "71c9674e-ffdf-4ce6-bf68-ea839d6a145e"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost/staynest-hotel-booking/backend/auth/login.php",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "staynest-hotel-booking",
+            "backend",
+            "auth",
+            "login.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logout",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost/staynest-hotel-booking/backend/auth/logout.php",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "staynest-hotel-booking",
+            "backend",
+            "auth",
+            "logout.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Session Authentication",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost/staynest-hotel-booking/backend/users/profile.php",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "staynest-hotel-booking",
+            "backend",
+            "users",
+            "profile.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User Information",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost/staynest-hotel-booking/backend/users/get-user.php?id=1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "staynest-hotel-booking",
+            "backend",
+            "users",
+            "get-user.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
