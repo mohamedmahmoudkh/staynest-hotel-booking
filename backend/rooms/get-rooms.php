@@ -1,5 +1,17 @@
 <?php
+include("../config/database.php");
 header('Content-Type: application/json');
-require_once '../config/database.php';
-$hotelId=(int)($_GET['hotel_id']??0); $stmt=$conn->prepare('SELECT * FROM rooms WHERE hotel_id=?'); $stmt->bind_param('i',$hotelId); $stmt->execute(); echo json_encode($stmt->get_result()->fetch_all(MYSQLI_ASSOC));
-?>
+
+$hotel_id = $_GET['id'] ?? '';
+$query = "SELECT * FROM rooms WHERE hotel_id = '$hotel_id' AND available = 1";
+$result = mysqli_query($conn, $query);
+
+$rooms = [];
+if ($result && mysqli_num_rows($result) > 0) {
+    while ($room = mysqli_fetch_assoc($result)) {
+        $rooms[] = $room;
+    }
+    echo json_encode(["status" => "success", "data" => $rooms]);
+} else {
+    echo json_encode(["status" => "error", "message" => "No available rooms found"]);
+}

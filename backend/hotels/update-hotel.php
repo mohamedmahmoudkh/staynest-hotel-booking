@@ -1,8 +1,24 @@
 <?php
+include("../config/database.php");
 header('Content-Type: application/json');
-require_once '../config/database.php';
-$data=json_decode(file_get_contents('php://input'),true);
-$id=(int)($data['id']??0); $stmt=$conn->prepare('UPDATE hotels SET name=?,location=?,description=?,image=?,rating=? WHERE id=?');
-$stmt->bind_param('ssssdi',$data['name'],$data['location'],$data['description'],$data['image'],$data['rating'],$id);
-echo json_encode(['success'=>$stmt->execute()]);
-?>
+
+$id = $_POST['id'] ?? '';
+$name = $_POST['name'] ?? '';
+$location = $_POST['location'] ?? '';
+$description = $_POST['description'] ?? '';
+$rating = $_POST['rating'] ?? '';
+
+$result = mysqli_query($conn, "SELECT * FROM hotels WHERE id = '$id'");
+
+if ($result && mysqli_num_rows($result) > 0) {
+    $query = "UPDATE hotels SET name = '$name', location = '$location', description = '$description', rating = '$rating' WHERE id = '$id'";
+    $run = mysqli_query($conn, $query);
+
+    if ($run) {
+        echo json_encode(["status" => "success", "message" => "Updated successfully"]);
+    } else {
+        echo json_encode(["status" => "error", "message" => mysqli_error($conn)]);
+    }
+} else {
+    echo json_encode(["status" => "error", "message" => "Hotel not found"]);
+}

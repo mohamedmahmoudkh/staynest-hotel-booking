@@ -1,8 +1,31 @@
 <?php
-header('Content-Type: application/json');
-require_once '../config/database.php';
-$data=json_decode(file_get_contents('php://input'),true);
-$id=(int)($data['id']??0); $stmt=$conn->prepare('UPDATE rooms SET room_type=?,price=?,capacity=?,description=?,image=?,available=? WHERE id=?');
-$stmt->bind_param('sdissii',$data['room_type'],$data['price'],$data['capacity'],$data['description'],$data['image'],$data['available'],$id);
-echo json_encode(['success'=>$stmt->execute()]);
-?>
+include("../config/database.php");
+
+$id = $_POST['id'] ?? '';
+$room_type = $_POST['room_type'] ?? '';
+$price = $_POST['price'] ?? '';
+$capacity = $_POST['capacity'] ?? '';
+$description = $_POST['description'] ?? '';
+$available = $_POST['available'] ?? '';
+
+$result = mysqli_query($conn, "SELECT * FROM rooms WHERE id = '$id'");
+
+if ($result && mysqli_num_rows($result) > 0) {
+    $query = "UPDATE rooms SET 
+                room_type = '$room_type', 
+                price = '$price', 
+                capacity = '$capacity', 
+                description = '$description', 
+                available = '$available' 
+              WHERE id = '$id'";
+
+    $run = mysqli_query($conn, $query);
+
+    if ($run) {
+        echo "Updated successfully";
+    } else {
+        echo "Update failed: " . mysqli_error($conn);
+    }
+} else {
+    echo "Room not found";
+}
