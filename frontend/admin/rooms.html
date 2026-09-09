@@ -1,5 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Manage Rooms - StayNest</title><link rel="stylesheet" href="../css/style.css"></head>
-<body><main><h1>Manage Rooms</h1><div id="roomAdmin"></div></main><script src="../js/admin.js"></script></body>
+<head>
+<meta charset="UTF-8">
+<title>Manage Rooms - StayNest</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+    nav a { margin-right: 16px; }
+    form { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+</style>
+</head>
+<body>
+    <h1>Manage Rooms</h1>
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="bookings.html">Bookings</a>
+    </nav>
+
+    <form id="room-form">
+        <input type="hidden" id="room_id">
+        <input type="number" id="room_hotel_id" placeholder="Hotel ID" required>
+        <input type="text" id="room_number" placeholder="Room number" required>
+        <input type="text" id="room_type" placeholder="Room type" required>
+        <input type="number" step="0.01" id="room_price" placeholder="Price per night" required>
+        <input type="number" id="room_capacity" placeholder="Capacity" required>
+        <select id="room_status">
+            <option value="available">available</option>
+            <option value="unavailable">unavailable</option>
+        </select>
+        <button type="submit">Save Room</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Hotel ID</th>
+                <th>Room #</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Capacity</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="rooms-table-body"></tbody>
+    </table>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
 </html>

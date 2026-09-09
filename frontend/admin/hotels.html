@@ -1,5 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Manage Hotels - StayNest</title><link rel="stylesheet" href="../css/style.css"></head>
-<body><main><h1>Manage Hotels</h1><div id="hotelAdmin"></div></main><script src="../js/admin.js"></script></body>
+<head>
+<meta charset="UTF-8">
+<title>Manage Hotels - StayNest</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+    nav a { margin-right: 16px; }
+    form { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+</style>
+</head>
+<body>
+    <h1>Manage Hotels</h1>
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="bookings.html">Bookings</a>
+    </nav>
+
+    <form id="hotel-form">
+        <input type="hidden" id="hotel_id">
+        <input type="text" id="hotel_name" placeholder="Hotel name" required>
+        <input type="text" id="hotel_location" placeholder="Location" required>
+        <input type="text" id="hotel_description" placeholder="Description">
+        <input type="text" id="hotel_image" placeholder="Image URL">
+        <button type="submit">Save Hotel</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="hotels-table-body"></tbody>
+    </table>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
 </html>

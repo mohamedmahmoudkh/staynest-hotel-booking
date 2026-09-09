@@ -1,5 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admin Dashboard - StayNest</title><link rel="stylesheet" href="../css/style.css"></head>
-<body><main><h1>Admin Dashboard</h1><nav><a href="hotels.html">Hotels</a> <a href="rooms.html">Rooms</a> <a href="bookings.html">Bookings</a></nav><section id="dashboard"></section></main><script src="../js/admin.js"></script></body>
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard - StayNest</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+    .stats-container { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+    .stat-card { border: 1px solid #ddd; border-radius: 8px; padding: 20px; min-width: 140px; text-align: center; }
+    .stat-card h3 { font-size: 28px; margin: 0 0 6px; }
+    .stat-card p { margin: 0; color: #666; }
+    nav a { margin-right: 16px; }
+</style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="bookings.html">Bookings</a>
+    </nav>
+
+    <div id="dashboard-stats" class="stats-container">Loading stats...</div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
 </html>

@@ -1,5 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Manage Bookings - StayNest</title><link rel="stylesheet" href="../css/style.css"></head>
-<body><main><h1>Manage Bookings</h1><div id="bookingAdmin"></div></main><script src="../js/admin.js"></script></body>
+<head>
+<meta charset="UTF-8">
+<title>Manage Bookings - StayNest</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+    nav a { margin-right: 16px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+</style>
+</head>
+<body>
+    <h1>Manage Bookings</h1>
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="bookings.html">Bookings</a>
+    </nav>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>User</th>
+                <th>Hotel</th>
+                <th>Room</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Guests</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="bookings-table-body-admin"></tbody>
+    </table>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
 </html>
