@@ -1,416 +1,88 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>My Bookings</title>
-
-    <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-
-<header class="navbar">
-
-    <div class="phone">
-        ☎ &nbsp; 123-448-7560
-    </div>
-
-    <a class="logo">
-        HotelBooking
-    </a>
-
-    <nav class="nav-links">
-
-        <a href="hotel-details.html">
-            Home
-        </a>
-
-        <a href="rooms.html">
-            Rooms & Suites
-        </a>
-
-        <a href="#">
-            Restaurant
-        </a>
-
-        <a href="#">
-            Gallery
-        </a>
-
-        <a href="#">
-            Blogs
-        </a>
-
-        <a href="#">
-            About Us
-        </a>
-
-        <a href="#">
-            ⌕
-        </a>
-
-        <a href="rooms.html"
-           class="book-btn">
-            Book Now
-        </a>
-
-    </nav>
-
-    <div class="mobile-menu">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="StayNest hotel booking platform" name="description" />
+    <title>My bookings | StayNest</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <a class="skip-link" href="#main-content"> Skip to content </a>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="logo" href="index.html">
+        <span class="logo-mark"> S </span>
+        StayNest
+      </a>
+      <button aria-expanded="false" aria-label="Open menu" class="nav-toggle">
         ☰
+      </button>
+      <nav aria-label="Main navigation" class="nav-links">
+        <a href="index.html"> Home </a>
+        <a href="hotels.html"> Hotels </a>
+        <a class="active" data-auth-only="" href="my-bookings.html">
+          My Bookings
+        </a>
+        <a data-auth-only="" href="profile.html"> Profile </a>
+        <a data-guest-only="" href="login.html"> Login </a>
+        <a class="nav-cta" data-guest-only="" href="register.html">
+          Create account
+        </a>
+        <a data-auth-only="" data-logout="" href="#"> Logout </a>
+        <a class="nav-cta" href="admin/dashboard.html"> Admin </a>
+      </nav>
     </div>
-
-</header>
-
-
-<section
-    class="hero"
-    style="min-height:240px;"
->
-
-    <div class="container hero-content">
-
-        <h1 style="font-size:50px;">
-            My Bookings
-        </h1>
-
-        <p>
-            Manage your upcoming and past reservations
-        </p>
-
-    </div>
-
-</section>
-
-
-<main class="section container">
-
-
-    <div class="bookings-table">
-
-        <table>
-
+  </header>
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <h1>My bookings</h1>
+        <p>Review and manage your StayNest reservations.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="table-wrap">
+          <table>
             <thead>
-
-                <tr>
-
-                    <th>
-                        Hotel
-                    </th>
-
-                    <th>
-                        Room Type
-                    </th>
-
-                    <th>
-                        Check-in
-                    </th>
-
-                    <th>
-                        Check-out
-                    </th>
-
-                    <th>
-                        Guests
-                    </th>
-
-                    <th>
-                        Total Price
-                    </th>
-
-                    <th>
-                        Status
-                    </th>
-
-                    <th>
-                        Actions
-                    </th>
-
-                </tr>
-
+              <tr>
+                <th>Hotel</th>
+                <th>Room</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Guests</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
             </thead>
-
-
-            <tbody>
-
-
-                <!-- BOOKING 1 -->
-
-                <tr>
-
-                    <td>
-
-                        <div class="hotel-cell">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=200&q=80"
-                                alt="Hotel"
-                            >
-
-                            <span>
-                                Hilton Alexandria
-                                Green Plaza
-                            </span>
-
-                        </div>
-
-                    </td>
-
-
-                    <td>
-                        Deluxe Room
-                    </td>
-
-
-                    <td>
-                        Sep 15, 2026
-                    </td>
-
-
-                    <td>
-                        Sep 19, 2026
-                    </td>
-
-
-                    <td>
-                        2
-                    </td>
-
-
-                    <td>
-                        $480
-                    </td>
-
-
-                    <td>
-
-                        <span class="status">
-                            Confirmed
-                        </span>
-
-                    </td>
-
-
-                    <td>
-
-                        <button
-                            class="cancel"
-                            onclick="cancelBooking(this)"
-                        >
-                            Cancel Booking
-                        </button>
-
-                    </td>
-
-                </tr>
-
-
-                <!-- BOOKING 2 -->
-
-                <tr>
-
-                    <td>
-
-                        <div class="hotel-cell">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=200&q=80"
-                                alt="Hotel"
-                            >
-
-                            <span>
-                                Four Seasons Hotel
-                            </span>
-
-                        </div>
-
-                    </td>
-
-
-                    <td>
-                        Executive Room
-                    </td>
-
-
-                    <td>
-                        Oct 10, 2026
-                    </td>
-
-
-                    <td>
-                        Oct 14, 2026
-                    </td>
-
-
-                    <td>
-                        2
-                    </td>
-
-
-                    <td>
-                        $600
-                    </td>
-
-
-                    <td>
-
-                        <span class="status">
-                            Confirmed
-                        </span>
-
-                    </td>
-
-
-                    <td>
-
-                        <button
-                            class="cancel"
-                            onclick="cancelBooking(this)"
-                        >
-                            Cancel Booking
-                        </button>
-
-                    </td>
-
-                </tr>
-
-
-                <!-- BOOKING 3 -->
-
-                <tr>
-
-                    <td>
-
-                        <div class="hotel-cell">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=200&q=80"
-                                alt="Hotel"
-                            >
-
-                            <span>
-                                Rixos Premium Seagate
-                            </span>
-
-                        </div>
-
-                    </td>
-
-
-                    <td>
-                        Junior Suite
-                    </td>
-
-
-                    <td>
-                        Nov 5, 2026
-                    </td>
-
-
-                    <td>
-                        Nov 10, 2026
-                    </td>
-
-
-                    <td>
-                        3
-                    </td>
-
-
-                    <td>
-                        $750
-                    </td>
-
-
-                    <td>
-
-                        <span
-                            class="status"
-                            style="
-                            background:#fff0cf;
-                            color:#9a6a00;
-                            "
-                        >
-                            Pending
-                        </span>
-
-                    </td>
-
-
-                    <td>
-
-                        <button
-                            class="cancel"
-                            onclick="cancelBooking(this)"
-                        >
-                            Cancel Booking
-                        </button>
-
-                    </td>
-
-                </tr>
-
-
+            <tbody id="bookings-body">
+              <tr>
+                <td class="loading" colspan="8">Loading bookings&hellip;</td>
+              </tr>
             </tbody>
-
-        </table>
-
-    </div>
-
-</main>
-
-
-<footer class="footer">
-
-    <div class="container footer-inner">
-
-        <strong>
-            ◉ HotelBooking
-        </strong>
-
-        <div class="footer-links">
-
-            <a href="hotel-details.html">
-                Home
-            </a>
-
-            <a href="rooms.html">
-                Rooms
-            </a>
-
-            <a href="#">
-                Restaurant
-            </a>
-
-            <a href="#">
-                Gallery
-            </a>
-
-            <a href="#">
-                About Us
-            </a>
-
+          </table>
         </div>
-
-        <small>
-            © 2026 HotelBooking. All rights reserved.
-        </small>
-
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong> StayNest </strong>
+        <div class="small">Comfortable stays. Simple booking.</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html"> Home </a>
+        <a href="hotels.html"> Hotels </a>
+        <a href="my-bookings.html"> My Bookings </a>
+        <a href="profile.html"> Profile </a>
+      </div>
+      <small> &copy; 2026 StayNest. All rights reserved. </small>
     </div>
-
-</footer>
-
-
-<script src="script.js"></script>
-
-</body>
-
+  </footer>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/my-bookings.js"></script>
 </html>
