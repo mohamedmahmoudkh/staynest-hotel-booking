@@ -1,396 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Complete Your Booking</title>
-
-    <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-
-<header class="navbar">
-
-    <div class="phone">
-        ☎ &nbsp; 123-448-7560
-    </div>
-
-    <a class="logo">
-        HotelBooking
-    </a>
-
-    <nav class="nav-links">
-
-        <a href="hotel-details.html">
-            Home
-        </a>
-
-        <a href="rooms.html">
-            Rooms & Suites
-        </a>
-
-        <a href="#">
-            Restaurant
-        </a>
-
-        <a href="#">
-            Gallery
-        </a>
-
-        <a href="#">
-            Blogs
-        </a>
-
-        <a href="#">
-            About Us
-        </a>
-
-        <a href="#">
-            ⌕
-        </a>
-
-        <a class="book-btn">
-            Book Now
-        </a>
-
-    </nav>
-
-    <div class="mobile-menu">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="StayNest hotel booking platform" name="description" />
+    <title>Complete booking | StayNest</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <a class="skip-link" href="#main-content"> Skip to content </a>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="logo" href="index.html">
+        <span class="logo-mark"> S </span>
+        StayNest
+      </a>
+      <button aria-expanded="false" aria-label="Open menu" class="nav-toggle">
         ☰
+      </button>
+      <nav aria-label="Main navigation" class="nav-links">
+        <a href="index.html"> Home </a>
+        <a href="hotels.html"> Hotels </a>
+        <a class="active" data-auth-only="" href="my-bookings.html">
+          My Bookings
+        </a>
+        <a data-auth-only="" href="profile.html"> Profile </a>
+        <a data-guest-only="" href="login.html"> Login </a>
+        <a class="nav-cta" data-guest-only="" href="register.html">
+          Create account
+        </a>
+        <a data-auth-only="" data-logout="" href="#"> Logout </a>
+        <a class="nav-cta" href="admin/dashboard.html"> Admin </a>
+      </nav>
     </div>
-
-</header>
-
-
-<section
-    class="hero"
-    style="min-height:240px;"
->
-
-    <div class="container hero-content">
-
-        <h1 style="font-size:48px;">
-            Complete Your Booking
-        </h1>
-
-        <p>
-            Review your details and confirm your reservation
-        </p>
-
+  </header>
+  <main class="section" id="main-content">
+    <div class="container">
+      <div class="booking-layout">
+        <aside class="card detail-card summary">
+          <h2 style="margin-top: 0">Booking summary</h2>
+          <p id="room-name">
+            <strong> Selected room </strong>
+          </p>
+          <p class="muted" id="room-capacity">Loading room&hellip;</p>
+          <div class="summary-row">
+            <span> Nightly rate </span>
+            <strong id="room-price"> &mdash; </strong>
+          </div>
+          <div class="summary-row">
+            <span> Dates </span>
+            <span> Selected below </span>
+          </div>
+          <div class="summary-row">
+            <span> Payment </span>
+            <span> Handled by booking system </span>
+          </div>
+        </aside>
+        <section class="card detail-card">
+          <h1 style="margin-top: 0">Complete your booking</h1>
+          <p class="muted">
+            Choose dates and guests. StayNest will check availability before
+            creating the reservation.
+          </p>
+          <form class="form-stack" id="booking-form">
+            <div class="split" style="gap: 14px">
+              <div class="field">
+                <label for="check_in"> Check-in </label>
+                <input id="check_in" name="check_in" required="" type="date" />
+              </div>
+              <div class="field">
+                <label for="check_out"> Check-out </label>
+                <input
+                  id="check_out"
+                  name="check_out"
+                  required=""
+                  type="date"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label for="guests"> Guests </label>
+              <input
+                id="guests"
+                min="1"
+                name="guests"
+                required=""
+                type="number"
+                value="2"
+              />
+            </div>
+            <div class="form-message hidden"></div>
+            <button class="btn btn-primary" type="submit">
+              Confirm booking
+            </button>
+          </form>
+        </section>
+      </div>
     </div>
-
-</section>
-
-
-<main class="section container">
-
-    <div class="booking-grid">
-
-
-        <!-- BOOKING SUMMARY -->
-
-        <div class="form-box">
-
-            <h2>
-                Booking Summary
-            </h2>
-
-            <p>
-                <b>
-                    Hilton Alexandria Green Plaza
-                </b>
-            </p>
-
-            <p class="muted">
-                ⌖ Alexandria, Egypt
-                &nbsp; ★ 4.7
-            </p>
-
-            <hr
-                style="
-                margin:20px 0;
-                border:0;
-                border-top:1px solid var(--border);
-                "
-            >
-
-            <p>
-                <b>
-                    Selected Room
-                </b>
-            </p>
-
-            <p id="selectedRoom">
-                Deluxe Room
-            </p>
-
-            <br>
-
-            <div class="summary-row">
-
-                <span>
-                    Check-in
-                </span>
-
-                <span>
-                    Sep 15, 2026
-                </span>
-
-            </div>
-
-
-            <div class="summary-row">
-
-                <span>
-                    Check-out
-                </span>
-
-                <span>
-                    Sep 19, 2026
-                </span>
-
-            </div>
-
-
-            <div class="summary-row">
-
-                <span>
-                    Guests
-                </span>
-
-                <span>
-                    2 Adults
-                </span>
-
-            </div>
-
-
-            <div class="summary-row">
-
-                <span>
-                    Nights
-                </span>
-
-                <span>
-                    4
-                </span>
-
-            </div>
-
-
-            <div class="summary-row total">
-
-                <span>
-                    Total Price
-                </span>
-
-                <span id="totalPrice">
-                    $480
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <!-- FORM -->
-
-        <div class="form-box">
-
-            <h2>
-                Guest Information
-            </h2>
-
-            <form onsubmit="confirmBooking(event)">
-
-
-                <div class="form-group">
-
-                    <label>
-                        Full Name
-                    </label>
-
-                    <input
-                        id="name"
-                        type="text"
-                        placeholder="Your full name"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Email Address
-                    </label>
-
-                    <input
-                        id="email"
-                        type="email"
-                        placeholder="you@example.com"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Phone Number
-                    </label>
-
-                    <input
-                        id="phoneInput"
-                        type="tel"
-                        placeholder="+20 123 456 7890"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Check-in
-                    </label>
-
-                    <input
-                        id="checkin"
-                        type="date"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Check-out
-                    </label>
-
-                    <input
-                        id="checkout"
-                        type="date"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Guests
-                    </label>
-
-                    <select id="guests">
-
-                        <option>
-                            1 Adult
-                        </option>
-
-                        <option selected>
-                            2 Adults
-                        </option>
-
-                        <option>
-                            3 Adults
-                        </option>
-
-                        <option>
-                            4 Adults
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Additional Requests
-                    </label>
-
-                    <textarea
-                        placeholder="Special requests..."
-                    ></textarea>
-
-                </div>
-
-
-                <button
-                    class="primary-btn"
-                    style="width:100%;"
-                >
-                    🔒 Confirm Booking
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<footer class="footer">
-
+  </main>
+  <footer class="footer">
     <div class="container footer-inner">
-
-        <strong>
-            ◉ HotelBooking
-        </strong>
-
-        <div class="footer-links">
-
-            <a href="hotel-details.html">
-                Home
-            </a>
-
-            <a href="rooms.html">
-                Rooms
-            </a>
-
-            <a href="#">
-                Restaurant
-            </a>
-
-            <a href="#">
-                Gallery
-            </a>
-
-            <a href="#">
-                About Us
-            </a>
-
-        </div>
-
-        <small>
-            © 2026 HotelBooking. All rights reserved.
-        </small>
-
+      <div>
+        <strong> StayNest </strong>
+        <div class="small">Comfortable stays. Simple booking.</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html"> Home </a>
+        <a href="hotels.html"> Hotels </a>
+        <a href="my-bookings.html"> My Bookings </a>
+        <a href="profile.html"> Profile </a>
+      </div>
+      <small> &copy; 2026 StayNest. All rights reserved. </small>
     </div>
-
-</footer>
-
-
-<script src="script.js"></script>
-
-</body>
-
+  </footer>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/booking.js"></script>
 </html>
