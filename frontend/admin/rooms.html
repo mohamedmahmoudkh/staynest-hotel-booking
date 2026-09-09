@@ -1,56 +1,128 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Manage Rooms - StayNest</title>
-<link rel="stylesheet" href="../css/style.css">
-<style>
-    nav a { margin-right: 16px; }
-    form { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-</style>
-</head>
-<body>
-    <h1>Manage Rooms</h1>
-    <nav>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="hotels.html">Hotels</a>
-        <a href="rooms.html">Rooms</a>
-        <a href="bookings.html">Bookings</a>
-    </nav>
-
-    <form id="room-form">
-        <input type="hidden" id="room_id">
-        <input type="number" id="room_hotel_id" placeholder="Hotel ID" required>
-        <input type="text" id="room_number" placeholder="Room number" required>
-        <input type="text" id="room_type" placeholder="Room type" required>
-        <input type="number" step="0.01" id="room_price" placeholder="Price per night" required>
-        <input type="number" id="room_capacity" placeholder="Capacity" required>
-        <select id="room_status">
-            <option value="available">available</option>
-            <option value="unavailable">unavailable</option>
-        </select>
-        <button type="submit">Save Room</button>
-    </form>
-
-    <table>
-        <thead>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="StayNest hotel booking platform" name="description" />
+    <title>Manage Rooms | StayNest</title>
+    <link href="../css/style.css" rel="stylesheet" />
+  </head>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="logo" href="../index.html">
+        <span class="logo-mark"> S </span>
+        StayNest Admin
+      </a>
+      <nav class="nav-links open">
+        <a href="dashboard.html"> Dashboard </a>
+        <a href="hotels.html"> Hotels </a>
+        <a href="rooms.html"> Rooms </a>
+        <a href="bookings.html"> Bookings </a>
+        <a href="../index.html"> View site </a>
+      </nav>
+    </div>
+  </header>
+  <main class="section" id="main-content">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <h1>Manage rooms</h1>
+          <p>Create and maintain rooms linked to hotel IDs.</p>
+        </div>
+      </div>
+      <section class="card detail-card">
+        <h2 id="room-form-title" style="margin-top: 0">Add room</h2>
+        <form class="form-stack" id="room-form">
+          <input name="id" type="hidden" />
+          <div class="split" style="gap: 14px">
+            <div class="field">
+              <label> Hotel ID </label>
+              <input name="hotel_id" required="" type="number" />
+            </div>
+            <div class="field">
+              <label> Room number </label>
+              <input name="room_number" required="" />
+            </div>
+          </div>
+          <div class="split" style="gap: 14px">
+            <div class="field">
+              <label> Room type </label>
+              <input name="room_type" required="" />
+            </div>
+            <div class="field">
+              <label> Price / night </label>
+              <input
+                min="0"
+                name="price"
+                required=""
+                step=".01"
+                type="number"
+              />
+            </div>
+          </div>
+          <div class="split" style="gap: 14px">
+            <div class="field">
+              <label> Capacity </label>
+              <input min="1" name="capacity" required="" type="number" />
+            </div>
+            <div class="field">
+              <label> Availability </label>
+              <select name="available">
+                <option value="1">Available</option>
+                <option value="0">Unavailable</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label> Description </label>
+            <textarea name="description"></textarea>
+          </div>
+          <div class="field">
+            <label> Image URL </label>
+            <input name="image" type="url" />
+          </div>
+          <button class="btn btn-primary" type="submit">Save room</button>
+        </form>
+      </section>
+      <div class="table-wrap" style="margin-top: 22px">
+        <table>
+          <thead>
             <tr>
-                <th>ID</th>
-                <th>Hotel ID</th>
-                <th>Room #</th>
-                <th>Type</th>
-                <th>Price</th>
-                <th>Capacity</th>
-                <th>Status</th>
-                <th>Actions</th>
+              <th>ID</th>
+              <th>Hotel</th>
+              <th>Room #</th>
+              <th>Type</th>
+              <th>Price</th>
+              <th>Capacity</th>
+              <th>Status</th>
+              <th>Actions</th>
             </tr>
-        </thead>
-        <tbody id="rooms-table-body"></tbody>
-    </table>
-
-    <script src="../js/api.js"></script>
-    <script src="../js/admin.js"></script>
-</body>
+          </thead>
+          <tbody id="rooms-table-body">
+            <tr>
+              <td class="loading" colspan="8">Loading&hellip;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong> StayNest </strong>
+        <div class="small">Comfortable stays. Simple booking.</div>
+      </div>
+      <div class="footer-links">
+        <a href="../index.html"> Home </a>
+        <a href="hotels.html"> Hotels </a>
+        <a href="../my-bookings.html"> My Bookings </a>
+        <a href="../profile.html"> Profile </a>
+      </div>
+      <small> &copy; 2026 StayNest. All rights reserved. </small>
+    </div>
+  </footer>
+  <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/admin.js"></script>
 </html>

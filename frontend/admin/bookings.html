@@ -1,43 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Manage Bookings - StayNest</title>
-<link rel="stylesheet" href="../css/style.css">
-<style>
-    nav a { margin-right: 16px; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-</style>
-</head>
-<body>
-    <h1>Manage Bookings</h1>
-    <nav>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="hotels.html">Hotels</a>
-        <a href="rooms.html">Rooms</a>
-        <a href="bookings.html">Bookings</a>
-    </nav>
-
-    <table>
-        <thead>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="StayNest hotel booking platform" name="description" />
+    <title>Manage Bookings | StayNest</title>
+    <link href="../css/style.css" rel="stylesheet" />
+  </head>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="logo" href="../index.html">
+        <span class="logo-mark"> S </span>
+        StayNest Admin
+      </a>
+      <nav class="nav-links open">
+        <a href="dashboard.html"> Dashboard </a>
+        <a href="hotels.html"> Hotels </a>
+        <a href="rooms.html"> Rooms </a>
+        <a href="bookings.html"> Bookings </a>
+        <a href="../index.html"> View site </a>
+      </nav>
+    </div>
+  </header>
+  <main class="section" id="main-content">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <h1>Manage bookings</h1>
+          <p>Review reservations and update their status.</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
             <tr>
-                <th>Booking ID</th>
-                <th>User</th>
-                <th>Hotel</th>
-                <th>Room</th>
-                <th>Check-in</th>
-                <th>Check-out</th>
-                <th>Guests</th>
-                <th>Total Price</th>
-                <th>Status</th>
-                <th>Action</th>
+              <th>ID</th>
+              <th>User</th>
+              <th>Hotel</th>
+              <th>Room</th>
+              <th>Check-in</th>
+              <th>Check-out</th>
+              <th>Guests</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
-        </thead>
-        <tbody id="bookings-table-body-admin"></tbody>
-    </table>
-
-    <script src="../js/api.js"></script>
-    <script src="../js/admin.js"></script>
-</body>
+          </thead>
+          <tbody id="bookings-table-body-admin">
+            <tr>
+              <td class="loading" colspan="10">Loading&hellip;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong> StayNest </strong>
+        <div class="small">Comfortable stays. Simple booking.</div>
+      </div>
+      <div class="footer-links">
+        <a href="../index.html"> Home </a>
+        <a href="hotels.html"> Hotels </a>
+        <a href="../my-bookings.html"> My Bookings </a>
+        <a href="../profile.html"> Profile </a>
+      </div>
+      <small> &copy; 2026 StayNest. All rights reserved. </small>
+    </div>
+  </footer>
+  <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/admin.js"></script>
 </html>

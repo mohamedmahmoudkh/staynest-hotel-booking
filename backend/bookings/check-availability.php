@@ -2,30 +2,54 @@
 header("Content-Type: application/json");
 require_once "../config/database.php";
 
-$room_id = isset($_GET['room_id']) ? intval($_GET['room_id']) : 0;
-$check_in = isset($_GET['check_in']) ? trim($_GET['check_in']) : '';
-$check_out = isset($_GET['check_out']) ? trim($_GET['check_out']) : '';
+$roomId = (int)($_GET["room_id"] ?? 0);
+$checkIn = trim($_GET["check_in"] ?? "");
+$checkOut = trim($_GET["check_out"] ?? "");
 
-if ($room_id <= 0 || $check_in === '' || $check_out === '') {
+$inDate = DateTime::createFromFormat("Y-m-d", $checkIn);
+$outDate = DateTime::createFromFormat("Y-m-d", $checkOut);
+
+if ($roomId <= 0 || !$inDate || !$outDate || $inDate >= $outDate) {
     http_response_code(400);
-    echo json_encode(["success" => false, "message" => "room_id, check_in and check_out are required"]);
+    echo json_encode(["success" => false, "message" => "Valid room ID and dates are required"]);
+    exit;
+}
+
+$stmt = $conn->prepare("SELECT available FROM rooms WHERE id = ? LIMIT 1");
+$stmt->bind_param("i", $roomId);
+$stmt->execute();
+$roomResult = $stmt->get_result();
+
+if ($roomResult->num_rows === 0) {
+    http_response_code(404);
+    echo json_encode(["success" => false, "message" => "Room not found"]);
+    exit;
+}
+
+$room = $roomResult->fetch_assoc();
+$stmt->close();
+
+if ((int)$room["available"] !== 1) {
+    echo json_encode(["success" => true, "message" => "Room is unavailable", "data" => ["available" => false]]);
     exit;
 }
 
 $stmt = $conn->prepare(
     "SELECT id FROM bookings
      WHERE room_id = ? AND status = 'confirmed'
-     AND check_in < ? AND check_out > ?"
+       AND check_in < ? AND check_out > ?
+     LIMIT 1"
 );
-$stmt->bind_param("iss", $room_id, $check_out, $check_in);
+$stmt->bind_param("iss", $roomId, $checkOut, $checkIn);
 $stmt->execute();
-$result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    echo json_encode(["available" => false, "message" => "Room is not available"]);
-} else {
-    echo json_encode(["available" => true, "message" => "Room is available"]);
-}
+$available = $stmt->get_result()->num_rows === 0;
+
+echo json_encode([
+    "success" => true,
+    "message" => $available ? "Room is available" : "Room is not available",
+    "data" => ["available" => $available]
+]);
 
 $stmt->close();
 $conn->close();

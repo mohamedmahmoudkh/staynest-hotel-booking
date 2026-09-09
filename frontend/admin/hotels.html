@@ -1,47 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Manage Hotels - StayNest</title>
-<link rel="stylesheet" href="../css/style.css">
-<style>
-    nav a { margin-right: 16px; }
-    form { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-</style>
-</head>
-<body>
-    <h1>Manage Hotels</h1>
-    <nav>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="hotels.html">Hotels</a>
-        <a href="rooms.html">Rooms</a>
-        <a href="bookings.html">Bookings</a>
-    </nav>
-
-    <form id="hotel-form">
-        <input type="hidden" id="hotel_id">
-        <input type="text" id="hotel_name" placeholder="Hotel name" required>
-        <input type="text" id="hotel_location" placeholder="Location" required>
-        <input type="text" id="hotel_description" placeholder="Description">
-        <input type="text" id="hotel_image" placeholder="Image URL">
-        <button type="submit">Save Hotel</button>
-    </form>
-
-    <table>
-        <thead>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="StayNest hotel booking platform" name="description" />
+    <title>Manage Hotels | StayNest</title>
+    <link href="../css/style.css" rel="stylesheet" />
+  </head>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="logo" href="../index.html">
+        <span class="logo-mark"> S </span>
+        StayNest Admin
+      </a>
+      <nav class="nav-links open">
+        <a href="dashboard.html"> Dashboard </a>
+        <a href="hotels.html"> Hotels </a>
+        <a href="rooms.html"> Rooms </a>
+        <a href="bookings.html"> Bookings </a>
+        <a href="../index.html"> View site </a>
+      </nav>
+    </div>
+  </header>
+  <main class="section" id="main-content">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <h1>Manage hotels</h1>
+          <p>Add, edit, and delete hotels through the PHP API.</p>
+        </div>
+      </div>
+      <section class="card detail-card">
+        <h2 id="hotel-form-title" style="margin-top: 0">Add hotel</h2>
+        <form class="form-stack" id="hotel-form">
+          <input name="id" type="hidden" />
+          <div class="split" style="gap: 14px">
+            <div class="field">
+              <label> Name </label>
+              <input name="name" required="" />
+            </div>
+            <div class="field">
+              <label> Location </label>
+              <input name="location" required="" />
+            </div>
+          </div>
+          <div class="field">
+            <label> Description </label>
+            <textarea name="description"></textarea>
+          </div>
+          <div class="field">
+            <label> Image URL </label>
+            <input name="image" type="url" />
+          </div>
+          <div class="field">
+            <label> Rating (0–5) </label>
+            <input name="rating" min="0" max="5" step="0.1" type="number" value="0" />
+          </div>
+          <button class="btn btn-primary" type="submit">Save hotel</button>
+        </form>
+      </section>
+      <div class="table-wrap" style="margin-top: 22px">
+        <table>
+          <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Actions</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Rating</th>
+              <th>Actions</th>
             </tr>
-        </thead>
-        <tbody id="hotels-table-body"></tbody>
-    </table>
-
-    <script src="../js/api.js"></script>
-    <script src="../js/admin.js"></script>
-</body>
+          </thead>
+          <tbody id="hotels-table-body">
+            <tr>
+              <td class="loading" colspan="5">Loading&hellip;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong> StayNest </strong>
+        <div class="small">Comfortable stays. Simple booking.</div>
+      </div>
+      <div class="footer-links">
+        <a href="../index.html"> Home </a>
+        <a href="hotels.html"> Hotels </a>
+        <a href="../my-bookings.html"> My Bookings </a>
+        <a href="../profile.html"> Profile </a>
+      </div>
+      <small> &copy; 2026 StayNest. All rights reserved. </small>
+    </div>
+  </footer>
+  <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/admin.js"></script>
 </html>

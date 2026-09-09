@@ -1,84 +1,131 @@
-// Adjust this if your project folder inside htdocs is not named "staynest"
-const API_BASE = "/staynest/backend";
+const StayNestAPI = (() => {
+  // Frontend pages live in /frontend; admin pages live in /frontend/admin.
+  // This keeps the frontend aligned with the README project structure:
+  // staynest-hotel-booking/{frontend,backend}.
+  const isAdminPage = window.location.pathname
+    .replaceAll("\\", "/")
+    .includes("/frontend/admin/");
+  const base =
+    window.location.protocol === "file:"
+      ? null
+      : isAdminPage
+        ? "../../backend"
+        : "../backend";
 
-async function apiRequest(endpoint, method = "GET", body = null) {
-    const options = {
-        method,
-        headers: { "Content-Type": "application/json" },
-        credentials: "include"
-    };
-
-    if (body) {
-        options.body = JSON.stringify(body);
+  async function request(endpoint, options = {}) {
+    if (!base) {
+      return {
+        success: false,
+        message:
+          "Open StayNest through XAMPP: http://localhost/staynest-hotel-booking/ — do not open the HTML files directly from File Explorer.",
+      };
     }
 
-    const response = await fetch(`${API_BASE}${endpoint}`, options);
-    return response.json();
-}
+    const config = {
+      method: options.method || "GET",
+      credentials: "include",
+      headers: {
+        ...(options.body ? { "Content-Type": "application/json" } : {}),
+        ...(options.headers || {}),
+      },
+      ...options,
+    };
 
-// ----- Bookings (Task 5) -----
+    if (config.body && typeof config.body !== "string") {
+      config.body = JSON.stringify(config.body);
+    }
 
-function createBooking(bookingData) {
-    return apiRequest("/bookings/create-booking.php", "POST", bookingData);
-}
+    try {
+      const response = await fetch(`${base}${endpoint}`, config);
+      const text = await response.text();
 
-function checkAvailability(roomId, checkIn, checkOut) {
-    const query = `room_id=${roomId}&check_in=${checkIn}&check_out=${checkOut}`;
-    return apiRequest(`/bookings/check-availability.php?${query}`, "GET");
-}
+      let data;
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        data = {
+          success: response.ok,
+          message: text || `Request failed (${response.status})`,
+        };
+      }
 
-function getMyBookings() {
-    return apiRequest("/bookings/my-bookings.php", "GET");
-}
+      if (!response.ok && typeof data.success === "undefined")
+        data.success = false;
+      return data;
+    } catch (error) {
+      return {
+        success: false,
+        message:
+          "Cannot connect to the PHP backend. Start Apache in XAMPP and open the project through localhost.",
+        error,
+      };
+    }
+  }
 
-function cancelBooking(bookingId) {
-    return apiRequest("/bookings/cancel-booking.php", "POST", { booking_id: bookingId });
-}
+  return {
+    base,
+    request,
 
-function getAllBookingsAdmin() {
-    return apiRequest("/bookings/all-bookings.php", "GET");
-}
+    // README Authentication endpoints
+    register: (body) => request("/auth/register.php", { method: "POST", body }),
+    login: (body) => request("/auth/login.php", { method: "POST", body }),
+    logout: () => request("/auth/logout.php", { method: "POST" }),
 
-function updateBookingStatusAdmin(bookingId, status) {
-    return apiRequest("/bookings/update-status.php", "POST", { booking_id: bookingId, status });
-}
+    // README Users endpoints
+    profile: () => request("/users/profile.php"),
+    getUser: () => request("/users/get-user.php"),
 
-function getDashboardStats() {
-    return apiRequest("/admin/get-stats.php", "GET");
-}
+    // README Hotels endpoints
+    hotels: (params = {}) => {
+      const query = new URLSearchParams();
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== "") query.set(key, value);
+      });
+      return request(`/hotels/get-hotels.php${query.toString() ? `?${query}` : ""}`);
+    },
+    hotel: (id) =>
+      request(`/hotels/get-hotel.php?id=${encodeURIComponent(id)}`),
+    addHotel: (body) =>
+      request("/hotels/add-hotel.php", { method: "POST", body }),
+    updateHotel: (body) =>
+      request("/hotels/update-hotel.php", { method: "POST", body }),
+    deleteHotel: (id) =>
+      request("/hotels/delete-hotel.php", { method: "POST", body: { id } }),
 
-// ----- Hotels (Task 4 APIs, reused here) -----
+    // README Rooms endpoints
+    rooms: (hotelId) =>
+      request(
+        `/rooms/get-rooms.php${hotelId ? `?hotel_id=${encodeURIComponent(hotelId)}` : ""}`,
+      ),
+    availableRooms: (hotelId, checkIn, checkOut) =>
+      request(`/rooms/get-available-rooms.php?hotel_id=${encodeURIComponent(hotelId)}&check_in=${encodeURIComponent(checkIn)}&check_out=${encodeURIComponent(checkOut)}`),
+    addRoom: (body) => request("/rooms/add-room.php", { method: "POST", body }),
+    updateRoom: (body) =>
+      request("/rooms/update-room.php", { method: "POST", body }),
+    deleteRoom: (id) =>
+      request("/rooms/delete-room.php", { method: "POST", body: { id } }),
 
-function getHotels() {
-    return apiRequest("/hotels/get-hotels.php", "GET");
-}
+    // README Bookings endpoints
+    createBooking: (body) =>
+      request("/bookings/create-booking.php", { method: "POST", body }),
+    myBookings: () => request("/bookings/my-bookings.php"),
+    cancelBooking: (id) =>
+      request("/bookings/cancel-booking.php", {
+        method: "POST",
+        body: { booking_id: id },
+      }),
+    allBookings: () => request("/bookings/all-bookings.php"),
+    stats: () => request("/admin/get-stats.php"),
 
-function addHotel(hotelData) {
-    return apiRequest("/hotels/add-hotel.php", "POST", hotelData);
-}
-
-function updateHotel(hotelData) {
-    return apiRequest("/hotels/update-hotel.php", "POST", hotelData);
-}
-
-function deleteHotel(hotelId) {
-    return apiRequest("/hotels/delete-hotel.php", "POST", { id: hotelId });
-}
-
-// ----- Rooms (Task 4 APIs, reused here) -----
-
-function getRooms() {
-    return apiRequest("/rooms/get-rooms.php", "GET");
-}
-
-function addRoom(roomData) {
-    return apiRequest("/rooms/add-room.php", "POST", roomData);
-}
-
-function updateRoom(roomData) {
-    return apiRequest("/rooms/update-room.php", "POST", roomData);
-}
-
-function deleteRoom(roomId) {
-    return apiRequest("/rooms/delete-room.php", "POST", { id: roomId });
-}
+    // Optional Task-5 extensions. The core README endpoints above remain the source of truth.
+    availability: (roomId, checkIn, checkOut) =>
+      request(
+        `/bookings/check-availability.php?room_id=${encodeURIComponent(roomId)}&check_in=${encodeURIComponent(checkIn)}&check_out=${encodeURIComponent(checkOut)}`,
+      ),
+    updateBookingStatus: (id, status) =>
+      request("/bookings/update-status.php", {
+        method: "POST",
+        body: { booking_id: id, status },
+      }),
+  };
+})();
