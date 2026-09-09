@@ -1,6 +1,4 @@
 <?php
-// Extra file, not in the original list, but required so the admin
-// "View & Manage Bookings" page has something to display.
 header("Content-Type: application/json");
 require_once "../config/database.php";
 require_once "../middleware/auth.php";
