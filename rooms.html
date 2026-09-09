@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Rooms & Suites</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="phone">
+        ☎ &nbsp; 123-448-7560
+    </div>
+
+    <a class="logo">
+        HotelBooking
+    </a>
+
+    <nav class="nav-links">
+
+        <a href="hotel-details.html">
+            Home
+        </a>
+
+        <a href="rooms.html">
+            Rooms & Suites
+        </a>
+
+        <a href="#">
+            Restaurant
+        </a>
+
+        <a href="#">
+            Gallery
+        </a>
+
+        <a href="#">
+            Blogs
+        </a>
+
+        <a href="#">
+            About Us
+        </a>
+
+        <a href="#">
+            ⌕
+        </a>
+
+        <a href="rooms.html"
+           class="book-btn">
+            Book Now
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu">
+        ☰
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container hero-content">
+
+        <h1>
+            Rooms &
+            <br>
+            Suites
+        </h1>
+
+        <div class="breadcrumb">
+
+            Home
+            &nbsp; • &nbsp;
+            Rooms & Suites
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ROOMS -->
+
+<main class="section container">
+
+    <h2 class="section-title">
+        Luxury Rooms & Suites
+    </h2>
+
+
+    <div class="rooms-grid">
+
+
+        <!-- ROOM 1 -->
+
+        <div class="room-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80"
+                alt="Deluxe Room">
+
+            <div class="room-body">
+
+                <div class="room-top">
+
+                    <div>
+
+                        <div class="room-title">
+                            Deluxe Room
+                        </div>
+
+                        <div class="rating">
+                            ★ ★ ★ ★ ★
+                        </div>
+
+                    </div>
+
+                    <div class="room-price">
+                        $120
+                        <br>
+                        <small>/ night</small>
+                    </div>
+
+                </div>
+
+                <div class="room-meta">
+                    🛏 2 &nbsp;&nbsp;
+                    🛁 1 &nbsp;&nbsp;
+                    👥 3
+                </div>
+
+                <button
+                    class="primary-btn"
+                    style="width:100%"
+                    onclick="selectRoom('Deluxe Room',120)"
+                >
+                    Select Room
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ROOM 2 -->
+
+        <div class="room-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80"
+                alt="Executive Room">
+
+            <div class="room-body">
+
+                <div class="room-top">
+
+                    <div>
+
+                        <div class="room-title">
+                            Executive Room
+                        </div>
+
+                        <div class="rating">
+                            ★ ★ ★ ★ ★
+                        </div>
+
+                    </div>
+
+                    <div class="room-price">
+                        $150
+                        <br>
+                        <small>/ night</small>
+                    </div>
+
+                </div>
+
+                <div class="room-meta">
+                    🛏 2 &nbsp;&nbsp;
+                    🛁 1 &nbsp;&nbsp;
+                    👥 3
+                </div>
+
+                <button
+                    class="primary-btn"
+                    style="width:100%"
+                    onclick="selectRoom('Executive Room',150)"
+                >
+                    Select Room
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ROOM 3 -->
+
+        <div class="room-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80"
+                alt="Junior Suite">
+
+            <div class="room-body">
+
+                <div class="room-top">
+
+                    <div>
+
+                        <div class="room-title">
+                            Junior Suite
+                        </div>
+
+                        <div class="rating">
+                            ★ ★ ★ ★ ★
+                        </div>
+
+                    </div>
+
+                    <div class="room-price">
+                        $180
+                        <br>
+                        <small>/ night</small>
+                    </div>
+
+                </div>
+
+                <div class="room-meta">
+                    🛏 2 &nbsp;&nbsp;
+                    🛁 1 &nbsp;&nbsp;
+                    👥 3
+                </div>
+
+                <button
+                    class="primary-btn"
+                    style="width:100%"
+                    onclick="selectRoom('Junior Suite',180)"
+                >
+                    Select Room
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ROOM 4 -->
+
+        <div class="room-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80"
+                alt="Superior Room">
+
+            <div class="room-body">
+
+                <div class="room-top">
+
+                    <div>
+
+                        <div class="room-title">
+                            Superior Room
+                        </div>
+
+                        <div class="rating">
+                            ★ ★ ★ ★ ★
+                        </div>
+
+                    </div>
+
+                    <div class="room-price">
+                        $140
+                        <br>
+                        <small>/ night</small>
+                    </div>
+
+                </div>
+
+                <div class="room-meta">
+                    🛏 2 &nbsp;&nbsp;
+                    🛁 1 &nbsp;&nbsp;
+                    👥 3
+                </div>
+
+                <button
+                    class="primary-btn"
+                    style="width:100%"
+                    onclick="selectRoom('Superior Room',140)"
+                >
+                    Select Room
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ROOM 5 -->
+
+        <div class="room-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80"
+                alt="Family Suite">
+
+            <div class="room-body">
+
+                <div class="room-top">
+
+                    <div>
+
+                        <div class="room-title">
+                            Family Suite
+                        </div>
+
+                        <div class="rating">
+                            ★ ★ ★ ★ ★
+                        </div>
+
+                    </div>
+
+                    <div class="room-price">
+                        $220
+                        <br>
+                        <small>/ night</small>
+                    </div>
+
+                </div>
+
+                <div class="room-meta">
+                    🛏 2 &nbsp;&nbsp;
+                    🛁 2 &nbsp;&nbsp;
+                    👥 5
+                </div>
+
+                <button
+                    class="primary-btn"
+                    style="width:100%"
+                    onclick="selectRoom('Family Suite',220)"
+                >
+                    Select Room
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ROOM 6 -->
+
+        <div class="room-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80"
+                alt="Presidential Suite">
+
+            <div class="room-body">
+
+                <div class="room-top">
+
+                    <div>
+
+                        <div class="room-title">
+                            Presidential Suite
+                        </div>
+
+                        <div class="rating">
+                            ★ ★ ★ ★ ★
+                        </div>
+
+                    </div>
+
+                    <div class="room-price">
+                        $350
+                        <br>
+                        <small>/ night</small>
+                    </div>
+
+                </div>
+
+                <div class="room-meta">
+                    🛏 2 &nbsp;&nbsp;
+                    🛁 2 &nbsp;&nbsp;
+                    👥 4
+                </div>
+
+                <button
+                    class="primary-btn"
+                    style="width:100%"
+                    onclick="selectRoom('Presidential Suite',350)"
+                >
+                    Select Room
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FEATURES -->
+
+    <div class="features">
+
+        <span>
+            ▣ &nbsp; Breakfast Included
+        </span>
+
+        <span>
+            🏊 &nbsp; Swimming Pool
+        </span>
+
+        <span>
+            📶 &nbsp; High Speed Wifi
+        </span>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-inner">
+
+        <strong>
+            ◉ HotelBooking
+        </strong>
+
+        <div class="footer-links">
+
+            <a href="hotel-details.html">Home</a>
+
+            <a href="rooms.html">Rooms</a>
+
+            <a href="#">Restaurant</a>
+
+            <a href="#">Gallery</a>
+
+            <a href="#">About Us</a>
+
+        </div>
+
+        <small>
+            © 2026 HotelBooking. All rights reserved.
+        </small>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
