@@ -1,1 +1,554 @@
-Reserved for the task owner. Implement this module here.
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #173d32;
+    --dark-green: #12352c;
+    --cream: #f7f3ec;
+    --white: #fffdf9;
+    --text: #17211d;
+    --gray: #737a74;
+    --border: #ddd8ce;
+    --gold: #c4a36a;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background-color: var(--cream);
+    color: var(--text);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.container {
+    width: 90%;
+    max-width: 1180px;
+    margin: auto;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    height: 82px;
+    background: #fbf9f4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    border-bottom: 1px solid #eee9df;
+}
+
+.logo {
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--green);
+}
+
+.phone {
+    font-size: 13px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: var(--green);
+}
+
+.book-btn {
+    background: var(--green);
+    color: white !important;
+    padding: 13px 25px;
+    border-radius: 5px;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 330px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(20, 54, 45, 0.92),
+            rgba(20, 54, 45, 0.15)
+        ),
+        url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80");
+
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    padding: 50px 0;
+}
+
+.hero h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 55px;
+    line-height: 1.05;
+    margin: 15px 0;
+}
+
+.breadcrumb {
+    font-size: 14px;
+}
+
+/* ================= GENERAL ================= */
+
+.section {
+    padding: 60px 0;
+}
+
+.section-title {
+    font-family: "Playfair Display", serif;
+    color: var(--green);
+    font-size: 42px;
+    margin-bottom: 30px;
+}
+
+.muted {
+    color: var(--gray);
+}
+
+.primary-btn {
+    border: none;
+    background: var(--green);
+    color: white;
+    padding: 13px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.primary-btn:hover {
+    background: var(--dark-green);
+}
+
+/* ================= HOTEL DETAILS ================= */
+
+.hotel-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: 35px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.gallery-main {
+    height: 390px;
+}
+
+.gallery-side {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+}
+
+.info-box {
+    background: #fbf9f4;
+    border: 1px solid var(--border);
+    padding: 28px;
+    border-radius: 8px;
+}
+
+.price {
+    font-family: "Playfair Display", serif;
+    font-size: 35px;
+    margin: 5px 0;
+}
+
+.rating {
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.amenities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.amenity {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 14px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* ================= ROOMS ================= */
+
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.room-card {
+    background: #fbf9f4;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.room-card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.room-body {
+    padding: 18px;
+}
+
+.room-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.room-title {
+    font-family: "Playfair Display", serif;
+    font-size: 22px;
+}
+
+.room-price {
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+}
+
+.room-meta {
+    color: var(--gray);
+    font-size: 13px;
+    margin: 12px 0;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    background: var(--green);
+    color: white;
+    padding: 23px;
+    border-radius: 7px;
+    margin-top: 35px;
+}
+
+/* ================= BOOKING ================= */
+
+.booking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.form-box {
+    background: #fbf9f4;
+    border: 1px solid var(--border);
+    padding: 28px;
+    border-radius: 8px;
+}
+
+.form-box h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cfc9be;
+    border-radius: 5px;
+    background: white;
+    outline: none;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.total {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+/* ================= CONFIRMATION ================= */
+
+.confirm {
+    text-align: center;
+    padding: 80px 0;
+}
+
+.check {
+    width: 70px;
+    height: 70px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 35px;
+
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.confirm h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 45px;
+    color: var(--green);
+}
+
+.confirm-card {
+    max-width: 850px;
+    margin: 35px auto;
+
+    background: #fbf9f4;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    padding: 25px;
+
+    text-align: left;
+}
+
+.confirm-head {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.confirm-head img {
+    width: 140px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.confirm-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    border-top: 1px solid var(--border);
+
+    margin-top: 25px;
+    padding-top: 20px;
+}
+
+.confirm-grid div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* ================= MY BOOKINGS ================= */
+
+.bookings-table {
+    background: #fbf9f4;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 17px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.hotel-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hotel-cell img {
+    width: 60px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.status {
+    background: #dcebdc;
+    color: #286034;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+.cancel {
+    border: 1px solid #d96d62;
+    background: transparent;
+    color: #b94e45;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    background: var(--green);
+    color: white;
+    margin-top: 60px;
+    padding: 35px 0;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+    font-size: 13px;
+}
+
+.footer small {
+    opacity: 0.75;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .nav-links,
+    .phone {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+        font-size: 24px;
+    }
+
+    .hotel-layout,
+    .booking-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rooms-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .amenities {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .confirm-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .rooms-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-side {
+        display: none;
+    }
+
+    .features {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .section-title {
+        font-size: 34px;
+    }
+
+    .confirm-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
