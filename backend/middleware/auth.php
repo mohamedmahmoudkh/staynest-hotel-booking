@@ -1,26 +1,31 @@
 <?php
 
-function start_session_safe()
-{
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+/*
+|--------------------------------------------------------------------------
+| Start Session
+|--------------------------------------------------------------------------
+*/
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| Require Login
+|--------------------------------------------------------------------------
+*/
+
 function require_login()
 {
-    start_session_safe();
-
     if (!isset($_SESSION["user_id"])) {
 
         http_response_code(401);
 
-        header("Content-Type: application/json");
-
         echo json_encode([
             "success" => false,
-            "message" => "You must be logged in"
+            "message" => "Authentication required"
         ]);
 
         exit;
@@ -28,18 +33,22 @@ function require_login()
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| Require Admin
+|--------------------------------------------------------------------------
+*/
+
 function require_admin()
 {
     require_login();
 
     if (
-        !isset($_SESSION["role"]) ||
-        $_SESSION["role"] !== "admin"
+        !isset($_SESSION["user_role"]) ||
+        $_SESSION["user_role"] !== "admin"
     ) {
 
         http_response_code(403);
-
-        header("Content-Type: application/json");
 
         echo json_encode([
             "success" => false,

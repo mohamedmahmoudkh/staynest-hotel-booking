@@ -15,6 +15,7 @@ $conn = new mysqli(
 );
 
 if ($conn->connect_error) {
+
     http_response_code(500);
 
     echo json_encode([
@@ -25,5 +26,5 @@ if ($conn->connect_error) {
     exit;
 }
 
-// Make sure Arabic / UTF-8 data works correctly
+// Support UTF-8 data
 $conn->set_charset("utf8mb4");

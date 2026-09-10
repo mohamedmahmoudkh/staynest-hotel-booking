@@ -2,41 +2,61 @@
 
 header("Content-Type: application/json");
 
-require_once "../config/database.php";
 require_once "../middleware/auth.php";
+require_once "../config/database.php";
 
 
 /*
 |--------------------------------------------------------------------------
-| Authentication
+| Allow GET requests only
+|--------------------------------------------------------------------------
+*/
+
+if ($_SERVER["REQUEST_METHOD"] !== "GET") {
+
+    http_response_code(405);
+
+    echo json_encode([
+        "success" => false,
+        "message" => "Method not allowed"
+    ]);
+
+    exit;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Require Authentication
 |--------------------------------------------------------------------------
 */
 
 require_login();
 
-$user_id = $_SESSION["user_id"];
+
+/*
+|--------------------------------------------------------------------------
+| Get Logged-in User ID
+|--------------------------------------------------------------------------
+*/
+
+$userId = $_SESSION["user_id"];
 
 
 /*
 |--------------------------------------------------------------------------
-| Get Current User
+| Get User From Database
 |--------------------------------------------------------------------------
 */
 
 $stmt = $conn->prepare(
-    "SELECT
-        id,
-        name,
-        email,
-        phone,
-        role,
-        created_at
+    "SELECT id, name, email, phone, role, created_at
      FROM users
      WHERE id = ?
      LIMIT 1"
 );
 
-$stmt->bind_param("i", $user_id);
+$stmt->bind_param("i", $userId);
 
 $stmt->execute();
 
@@ -45,7 +65,7 @@ $result = $stmt->get_result();
 
 /*
 |--------------------------------------------------------------------------
-| User Not Found
+| Check User Exists
 |--------------------------------------------------------------------------
 */
 
@@ -70,13 +90,14 @@ $user = $result->fetch_assoc();
 
 /*
 |--------------------------------------------------------------------------
-| Response
+| Return User Profile
 |--------------------------------------------------------------------------
 */
 
+http_response_code(200);
+
 echo json_encode([
     "success" => true,
-    "message" => "Profile fetched successfully",
     "user" => $user
 ]);
 

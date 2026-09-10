@@ -2,41 +2,56 @@
 
 header("Content-Type: application/json");
 
-require_once "../config/database.php";
 require_once "../middleware/auth.php";
+require_once "../config/database.php";
 
 
 /*
 |--------------------------------------------------------------------------
-| Authentication
+| Allow GET requests only
+|--------------------------------------------------------------------------
+*/
+
+if ($_SERVER["REQUEST_METHOD"] !== "GET") {
+
+    http_response_code(405);
+
+    echo json_encode([
+        "success" => false,
+        "message" => "Method not allowed"
+    ]);
+
+    exit;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Require Authentication
 |--------------------------------------------------------------------------
 */
 
 require_login();
 
 
-$currentUserId = (int) $_SESSION["user_id"];
-$currentUserRole = $_SESSION["role"] ?? "user";
-
-
 /*
 |--------------------------------------------------------------------------
-| Get Requested User ID
+| Get User ID
 |--------------------------------------------------------------------------
 */
 
-$id = isset($_GET["id"])
+$userId = isset($_GET["id"])
     ? (int) $_GET["id"]
     : 0;
 
 
 /*
 |--------------------------------------------------------------------------
-| Validate ID
+| Validate User ID
 |--------------------------------------------------------------------------
 */
 
-if ($id <= 0) {
+if ($userId <= 0) {
 
     http_response_code(400);
 
@@ -59,9 +74,12 @@ if ($id <= 0) {
 |
 */
 
+$currentUserId = (int) $_SESSION["user_id"];
+$currentUserRole = $_SESSION["user_role"] ?? "user";
+
 if (
     $currentUserRole !== "admin" &&
-    $id !== $currentUserId
+    $userId !== $currentUserId
 ) {
 
     http_response_code(403);
@@ -77,24 +95,18 @@ if (
 
 /*
 |--------------------------------------------------------------------------
-| Get User
+| Get User From Database
 |--------------------------------------------------------------------------
 */
 
 $stmt = $conn->prepare(
-    "SELECT
-        id,
-        name,
-        email,
-        phone,
-        role,
-        created_at
+    "SELECT id, name, email, phone, role, created_at
      FROM users
      WHERE id = ?
      LIMIT 1"
 );
 
-$stmt->bind_param("i", $id);
+$stmt->bind_param("i", $userId);
 
 $stmt->execute();
 
@@ -103,7 +115,7 @@ $result = $stmt->get_result();
 
 /*
 |--------------------------------------------------------------------------
-| User Not Found
+| Check User Exists
 |--------------------------------------------------------------------------
 */
 
@@ -123,18 +135,25 @@ if ($result->num_rows === 0) {
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| Get User Data
+|--------------------------------------------------------------------------
+*/
+
 $user = $result->fetch_assoc();
 
 
 /*
 |--------------------------------------------------------------------------
-| Response
+| Return User Information
 |--------------------------------------------------------------------------
 */
 
+http_response_code(200);
+
 echo json_encode([
     "success" => true,
-    "message" => "User fetched successfully",
     "user" => $user
 ]);
 

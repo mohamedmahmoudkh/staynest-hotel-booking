@@ -1,15 +1,51 @@
 <?php
 
+session_start();
+
 header("Content-Type: application/json");
-
-require_once "../middleware/auth.php";
-
-start_session_safe();
 
 
 /*
 |--------------------------------------------------------------------------
-| Clear Session
+| Allow POST requests only
+|--------------------------------------------------------------------------
+*/
+
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+
+    http_response_code(405);
+
+    echo json_encode([
+        "success" => false,
+        "message" => "Method not allowed"
+    ]);
+
+    exit;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Check if User is Logged In
+|--------------------------------------------------------------------------
+*/
+
+if (!isset($_SESSION["user_id"])) {
+
+    http_response_code(401);
+
+    echo json_encode([
+        "success" => false,
+        "message" => "No active session"
+    ]);
+
+    exit;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Clear Session Data
 |--------------------------------------------------------------------------
 */
 
@@ -18,7 +54,7 @@ $_SESSION = [];
 
 /*
 |--------------------------------------------------------------------------
-| Destroy Session Cookie
+| Delete Session Cookie
 |--------------------------------------------------------------------------
 */
 
@@ -49,9 +85,11 @@ session_destroy();
 
 /*
 |--------------------------------------------------------------------------
-| Response
+| Logout Successful
 |--------------------------------------------------------------------------
 */
+
+http_response_code(200);
 
 echo json_encode([
     "success" => true,
